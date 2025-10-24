@@ -8,6 +8,7 @@ import pdfToText from 'react-pdftotext'
 const Dashboard = () => {
 
   const {token} = useSelector(state => state.auth)
+  const {user} = useSelector(state => state.auth)
 
   const colors = ["#9333ea", "#d97706", "#dc2626", "#0284c7", "#16a34a"]
   const [allResumes, setAllResumes] = useState([])
@@ -50,7 +51,7 @@ const Dashboard = () => {
      setTitle('')
      setResume(null)
      setShowUploadResume(false)
-     navigate(`/app/builder/${data.resumeId}`)
+     navigate(`/app/builder/${data.resume._id}`)
    } catch (error) {
     toast.error(error?.response?.data?.message || error.message)
    }
@@ -92,7 +93,7 @@ const Dashboard = () => {
   return (
     <div>
       <div className='max-w-7xl mx-auto px-4 py-8'>
-        <p className='text-2xl font-medium mb-6 bg-gradient-to-r from-slate-600 to-slate-700 bg-clip-text text-transparent sm:hidden'>Welcome, Kingshuk</p>
+        <p className='text-2xl font-medium mb-6 bg-gradient-to-r from-slate-600 to-slate-700 bg-clip-text text-transparent hidden md:flex'>Welcome, {user?.name}</p>
 
         <div className='flex gap-4'>
           <button onClick={()=> setShowCreateResume(true)} className='w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg text-slate-600 border border-dashed
@@ -120,7 +121,7 @@ const Dashboard = () => {
              <p className='absolute bottom-1 text-[11px] text-slate-400 group-hover:text-slate-500 transition-all duration-300 px-2 text-center' style={{color:basecolor + '90'}}>
               Updated on {new Date(resume.updatedAt).toLocaleDateString()}
              </p>
-             <div onClick={e=> e.stopPropagation()} className='absolute top-1 right-1 group-hover:flex items-center hidden'>
+             <div onClick={e=> e.stopPropagation()} className='absolute top-1 right-1 group-hover:flex  items-center md:hidden'>
                <TrashIcon onClick={()=>deleteResume(resume._id)} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors ' />
                <PencilIcon onClick={()=>{setEditResumeId(resume._id); setTitle(resume.title)}} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors ' />
              </div>
@@ -164,7 +165,7 @@ const Dashboard = () => {
 
                   </div>
                 </label>
-                <input type="file" id='resume-input' accept='.pdf' hidden 
+                <input type="file" id='resume-input' accept='application/pdf' hidden 
                 onChange={(e)=> setResume(e.target.files[0])} />
               </div>
               <button disabled={isloading}
