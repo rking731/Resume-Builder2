@@ -43,9 +43,9 @@ const Dashboard = () => {
   }
 
   const uploadResume = async (event) => {
+    event.preventDefault()
    setIsLoading(true)
    try {
-     event.preventDefault()
     const resumeText = await pdfToText(resume)
      const {data} = await api.post('/api/ai/upload-resume', {title, resumeText}, {headers: {Authorization: token}})
      setTitle('')
