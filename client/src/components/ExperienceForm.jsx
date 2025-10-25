@@ -43,7 +43,7 @@ const ExperienceForm = ({data, onChange}) => {
   const enhanced = data?.enhancedContent ?? experience.description
   updateExperience(index, "description", enhanced)
       } catch (error) {
-        toast.error(error.message)
+        toast.error("This feature is currently inactive",  error.message)
       }finally{
         setGeneratingIndex(-1)
       }

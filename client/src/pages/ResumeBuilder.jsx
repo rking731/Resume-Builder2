@@ -29,7 +29,7 @@ const ResumeBuilder = () => {
     project: [],
     skills: [],
     template: "classic",
-    accent_color: "#3B82F6",
+    accent_color: "#00FF00",
     public: false,
   })
 

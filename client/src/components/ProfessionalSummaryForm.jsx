@@ -18,7 +18,7 @@ const ProfessionalSummaryForm = ({data, onChange, setResumeData}) => {
   const enhanced = response?.data?.enhancedContent ?? data
   setResumeData(prev => ({...prev, professional_summary: enhanced}))
     } catch (error) {
-      toast.error(error?.response?.data?.message || error.message)
+      toast.error("This feature is currently inactive",error?.response?.data?.message || error.message)
     }
     finally{
       setIsGenerating(false)

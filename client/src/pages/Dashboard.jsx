@@ -53,7 +53,7 @@ const Dashboard = () => {
      setShowUploadResume(false)
      navigate(`/app/builder/${data.resume._id}`)
    } catch (error) {
-    toast.error(error?.response?.data?.message || error.message)
+    toast.error("This feature is currently unavailable",error?.response?.data?.message || error.message)
    }
    setIsLoading(false)
   }
