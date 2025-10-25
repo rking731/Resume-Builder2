@@ -13,7 +13,7 @@ const SkillsForm = ({data, onChange}) => {
     }
 
     const removeSkill = (indexToRemove) => {
-        onchange(data.filter((_,index)=> index !== indexToRemove))
+        onChange(data.filter((_, index)=> index !== indexToRemove))
     }
 
     const handleKeyPress = (e)=> {
